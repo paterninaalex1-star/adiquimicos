@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adiquímicos — Urea Automotriz AUS 32 · ISO 22241 · Barranquilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <style>
+    :root {
+      --black: #000;
+      --off-white: #FAF9F5;
+      --white: #fff;
+      --ink: #141413;
+      --fog: rgba(255,255,255,.55);
+      --ink-50: rgba(20,20,19,.5);
+      --brand-cyan: #00BCD4;
+      --brand-green: #70C432;
+      --ff: 'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body { background: var(--black); color: var(--white); font-family: var(--ff); font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9997; opacity: .18; }
+
+    #global-vid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; background: #000; }
+    #global-vid video { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 16px 0; transition: background .3s ease-out, border-color .3s ease-out; border-bottom: 1px solid transparent; }
+    nav.scrolled { background: rgba(0,0,0,.93); backdrop-filter: blur(20px); border-color: rgba(255,255,255,.07); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { opacity: 0; display: flex; align-items: center; }
+    .nav-logo img { height: 110px; width: auto; }
+    .nav-links { display: flex; gap: 40px; font-size: 13px; font-weight: 400; color: var(--fog); }
+    .nav-links a { transition: color .2s ease-out; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--brand-cyan); opacity: 0; border: 1px solid var(--brand-cyan); padding: 10px 20px; transition: background .18s ease-out, color .18s ease-out; display: inline-block; }
+    .nav-cta:hover { background: var(--brand-cyan); color: var(--black); }
+
+    /* ── HERO ── */
+    #hero { position: relative; min-height: 100vh; display: flex; align-items: center; background: transparent; padding: 120px 0 80px; }
+    .hero-content { max-width: 540px; }
+    .hero-label { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--brand-cyan); margin-bottom: 24px; opacity: 0; transform: translateY(12px); display: block; }
+    .hero-headline { font-weight: 600; font-size: clamp(40px, 5.2vw, 84px); line-height: 0.93; letter-spacing: -.03em; opacity: 0; transform: translateY(12px); }
+    .hero-sub { margin-top: 28px; font-size: 16px; font-weight: 400; color: var(--fog); line-height: 1.65; opacity: 0; transform: translateY(12px); }
+    .hero-actions { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; transform: translateY(12px); }
+
+    /* ── BUTTONS ── */
+    .btn-primary { font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--white); border: 1px solid var(--white); padding: 14px 24px; background: transparent; display: inline-block; transition: background .18s ease-out, color .18s ease-out; }
+    .btn-primary:hover { background: var(--white); color: var(--black); }
+    .btn-ghost { font-weight: 400; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fog); border: 1px solid rgba(255,255,255,.25); padding: 14px 24px; background: transparent; display: inline-block; transition: color .18s ease-out, border-color .18s ease-out; }
+    .btn-ghost:hover { color: var(--white); border-color: var(--white); }
+    .btn-cyan { font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--brand-cyan); border: 1px solid var(--brand-cyan); padding: 14px 24px; background: transparent; display: inline-block; transition: background .18s ease-out, color .18s ease-out; }
+    .btn-cyan:hover { background: var(--brand-cyan); color: var(--black); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { overflow: hidden; border-top: 1px solid rgba(255,255,255,.07); border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(0,0,0,.68); padding: 16px 0; }
+    .marquee-track { display: flex; animation: marquee 24s linear infinite; width: max-content; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+    .m-item { display: flex; align-items: center; gap: 20px; padding: 0 32px; white-space: nowrap; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.3); letter-spacing: .14em; text-transform: uppercase; }
+    .m-item .dot { width: 4px; height: 4px; background: var(--brand-cyan); flex-shrink: 0; border-radius: 50%; }
+    .m-item strong { color: rgba(255,255,255,.7); }
+
+    /* ── CREDS ── */
+    #creds { padding: 80px 0; background: rgba(0,0,0,.65); border-top: 1px solid rgba(255,255,255,.07); }
+    .creds-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cred-item { display: flex; flex-direction: column; gap: 8px; }
+    .cred-num { font-weight: 600; font-size: 40px; letter-spacing: -.025em; line-height: 1; color: var(--white); }
+    .cred-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fog); }
+    .cred-sep { width: 1px; height: 48px; background: rgba(255,255,255,.07); }
+    .cred-logos { display: flex; align-items: center; gap: 48px; }
+    .cred-logos span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fog); }
+    .cred-logos img { height: 44px; width: auto; opacity: .7; transition: opacity .2s ease-out; }
+    .cred-logos img:hover { opacity: 1; }
+
+    /* ── SHARED SECTION STYLES ── */
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--brand-cyan); margin-bottom: 24px; display: block; }
+    .section-label.dark { color: var(--brand-cyan); opacity: .8; }
+    .section-title { font-weight: 600; font-size: clamp(32px, 5vw, 72px); line-height: 0.95; letter-spacing: -.025em; color: inherit; }
+    .section-sub { margin-top: 20px; font-size: 17px; font-weight: 400; line-height: 1.65; }
+    .section-sub.light { color: var(--fog); }
+    .section-sub.dark { color: var(--ink-50); }
+
+    /* ── PROBLEM ── */
+    #problem { padding: 140px 0 120px; background: rgba(0,0,0,.62); color: var(--white); }
+    #problem .section-intro { margin-bottom: 64px; max-width: 640px; }
+    .problem-cards { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,.15); max-width: 680px; }
+    .problem-card { padding: 36px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .problem-card:last-child { border-bottom: none; }
+    .problem-num { font-weight: 600; font-size: 11px; letter-spacing: .14em; color: var(--brand-cyan); margin-bottom: 16px; }
+    .problem-title { font-weight: 600; font-size: 18px; line-height: 1.3; margin-bottom: 12px; letter-spacing: -.01em; color: var(--white); }
+    .problem-text { font-size: 14px; color: var(--fog); line-height: 1.72; }
+    .problem-answer { margin-top: 16px; font-size: 13px; color: var(--white); font-weight: 600; display: flex; gap: 8px; }
+    .problem-answer::before { content: '→'; flex-shrink: 0; color: var(--brand-cyan); }
+
+    /* ── PILLARS ── */
+    #pillars { padding: 140px 0; background: rgba(0,0,0,.58); color: var(--white); }
+    #pillars .section-intro { margin-bottom: 80px; }
+    .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid rgba(255,255,255,.1); }
+    .pillar-card { padding: 56px 48px 56px 0; border-right: 1px solid rgba(255,255,255,.1); }
+    .pillar-card:nth-child(even) { border-right: none; padding-right: 0; padding-left: 48px; }
+    .pillar-card:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.1); padding-top: 48px; }
+    .pillar-num { font-weight: 600; font-size: 11px; letter-spacing: .14em; color: var(--brand-cyan); margin-bottom: 20px; }
+    .pillar-title { font-weight: 600; font-size: 22px; letter-spacing: -.02em; margin-bottom: 12px; color: var(--white); line-height: 1.2; }
+    .pillar-sub { font-size: 15px; color: var(--fog); line-height: 1.72; margin-bottom: 16px; }
+    .pillar-proof { font-size: 13px; font-weight: 600; color: var(--brand-cyan); }
+
+    /* ── VIDEO BREAK ── */
+    #videobreak { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; background: #000; overflow: hidden; }
+    .vb-vid { position: absolute; inset: 0; z-index: 0; }
+    .vb-vid video { width: 100%; height: 140%; object-fit: cover; object-position: center; transform: translateY(-10%); opacity: .4; }
+    .vb-overlay { position: absolute; inset: 0; z-index: 1; background: rgba(0,0,0,.55); }
+    .vb-content { position: relative; z-index: 2; max-width: 1400px; width: 100%; padding: 0 40px; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+    .vb-label { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--brand-cyan); opacity: 0; transform: translateY(12px); }
+    .vb-headline { font-weight: 600; font-size: clamp(40px, 6vw, 88px); line-height: 0.95; letter-spacing: -.025em; max-width: 800px; color: var(--white); opacity: 0; transform: translateY(12px); }
+    .vb-sub { font-size: clamp(15px, 1.4vw, 18px); font-weight: 400; color: var(--fog); max-width: 560px; line-height: 1.7; opacity: 0; transform: translateY(12px); }
+    .vb-cta { opacity: 0; transform: translateY(12px); }
+
+    /* ── HOW IT WORKS ── */
+    #howworks { padding: 140px 0; background: var(--black); }
+    #howworks .section-intro { margin-bottom: 80px; }
+    .steps-list { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border-top: 1px solid rgba(255,255,255,.08); }
+    .step-item { padding: 48px 40px 0 0; }
+    .step-item:not(:first-child) { padding-left: 40px; border-left: 1px solid rgba(255,255,255,.08); }
+    .step-num { font-weight: 600; font-size: 56px; letter-spacing: -.04em; line-height: 1; color: var(--white); opacity: .06; margin-bottom: 28px; display: block; }
+    .step-title { font-weight: 600; font-size: 17px; letter-spacing: -.01em; color: var(--white); margin-bottom: 12px; line-height: 1.3; }
+    .step-text { font-size: 14px; color: var(--fog); line-height: 1.72; }
+
+    /* ── CERTIFICATIONS ── */
+    #certs { padding: 140px 0; background: var(--black); }
+    .cert-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cert-left { }
+    .cert-iso { font-weight: 600; font-size: clamp(56px, 10vw, 140px); line-height: 0.88; letter-spacing: -.04em; color: var(--white); }
+    .cert-iso-sub { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fog); margin-top: 24px; }
+    .cert-right { padding-top: 8px; }
+    .cert-title { font-weight: 600; font-size: clamp(22px, 2.5vw, 32px); letter-spacing: -.02em; margin-bottom: 20px; color: var(--white); line-height: 1.2; }
+    .cert-text { font-size: 15px; color: var(--fog); line-height: 1.72; margin-bottom: 32px; }
+    .cert-points { display: flex; flex-direction: column; gap: 14px; }
+    .cert-point { display: flex; gap: 12px; font-size: 14px; color: var(--fog); line-height: 1.5; }
+    .cert-point::before { content: '→'; color: var(--brand-cyan); flex-shrink: 0; font-weight: 600; }
+
+    /* ── CLIENTS ── */
+    #clients { padding: 80px 0; background: var(--black); border-top: 1px solid rgba(255,255,255,.07); border-bottom: 1px solid rgba(255,255,255,.07); overflow: hidden; }
+    .clients-header { padding: 0 40px; margin-bottom: 48px; max-width: 1400px; margin-left: auto; margin-right: auto; }
+    .clients-header p { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+    .logo-marquee-wrap { overflow: hidden; }
+    .logo-marquee-track { display: flex; align-items: center; gap: 96px; animation: logo-scroll 16s linear infinite; width: max-content; padding: 0 48px; }
+    .logo-marquee-track:hover { animation-play-state: paused; }
+    @keyframes logo-scroll { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+    .logo-marquee-track img { height: 80px; width: auto; max-width: 220px; object-fit: contain; mix-blend-mode: screen; opacity: .9; transition: opacity .2s; }
+    .logo-marquee-track img:hover { opacity: 1; }
+
+    /* ── FAQ ── */
+    #faq { padding: 140px 0; background: var(--off-white); color: var(--ink); }
+    #faq .section-intro { margin-bottom: 64px; }
+    .faq-list { max-width: 860px; }
+    .faq-item { border-top: 1px solid rgba(20,20,19,.1); }
+    .faq-item:last-child { border-bottom: 1px solid rgba(20,20,19,.1); }
+    .faq-q { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 28px 0; cursor: pointer; user-select: none; }
+    .faq-q-text { font-weight: 600; font-size: 16px; letter-spacing: -.01em; color: var(--ink); line-height: 1.4; }
+    .faq-toggle { font-size: 22px; color: var(--brand-cyan); flex-shrink: 0; transition: transform .25s ease-out; line-height: 1; margin-top: 2px; }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease-out; }
+    .faq-a-inner { padding-bottom: 28px; font-size: 15px; color: var(--ink-50); line-height: 1.72; }
+    .faq-item.open .faq-a { max-height: 500px; }
+
+    /* ── FORM ── */
+    #cotizacion { padding: 140px 0; background: var(--off-white); color: var(--ink); border-top: 1px solid rgba(20,20,19,.08); }
+    #cotizacion .section-intro { margin-bottom: 64px; }
+    #cotizacion .section-sub { color: var(--ink-50); }
+    .form-wrapper { max-width: 720px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
+    .form-group.full { grid-column: 1/-1; }
+    label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-50); }
+    input, select, textarea { background: transparent; border: none; border-bottom: 1px solid rgba(20,20,19,.18); padding: 12px 0; color: var(--ink); font-family: var(--ff); font-size: 15px; outline: none; transition: border-color .2s ease-out; width: 100%; border-radius: 0; -webkit-appearance: none; }
+    input::placeholder, textarea::placeholder { color: rgba(20,20,19,.35); }
+    select { cursor: pointer; appearance: none; }
+    select option { background: var(--off-white); color: var(--ink); }
+    input:focus, select:focus, textarea:focus { border-bottom-color: var(--brand-cyan); }
+    textarea { resize: vertical; min-height: 80px; }
+    .btn-submit { width: 100%; margin-top: 32px; font-family: var(--ff); font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 18px 0; background: var(--ink); border: 1px solid var(--ink); color: var(--white); cursor: pointer; transition: background .18s ease-out, color .18s ease-out; border-radius: 0; }
+    .btn-submit:hover { background: transparent; color: var(--ink); }
+    .form-note { margin-top: 20px; text-align: center; font-size: 13px; color: var(--ink-50); }
+    .form-note a { color: var(--brand-cyan); font-weight: 600; }
+    .form-success { display: none; text-align: center; padding: 64px 0; }
+    .form-success h3 { font-weight: 600; font-size: 24px; margin-bottom: 10px; color: var(--ink); }
+    .form-success p { font-size: 15px; color: var(--ink-50); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 100px 0 48px; overflow: hidden; }
+    .footer-wordmark { font-weight: 600; font-size: clamp(72px, 18vw, 260px); line-height: 0.85; letter-spacing: -.04em; color: var(--white); opacity: 0.04; white-space: nowrap; overflow: hidden; margin-bottom: 48px; }
+    .footer-bottom { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 32px; border-top: 1px solid rgba(255,255,255,.07); padding-top: 40px; }
+    .footer-brand-name { font-weight: 600; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
+    .footer-tagline { font-size: 13px; color: var(--fog); }
+    .footer-links { display: flex; gap: 32px; font-size: 13px; color: var(--fog); }
+    .footer-links a { transition: color .2s ease-out; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-right { font-size: 13px; color: var(--fog); text-align: right; line-height: 1.8; }
+    .footer-right a { color: var(--brand-cyan); font-weight: 600; }
+
+    /* ── WA FAB ── */
+    .wa-fab { position: fixed; bottom: 32px; right: 32px; z-index: 490; width: 52px; height: 52px; background: #25d366; display: flex; align-items: center; justify-content: center; transition: transform .2s ease-out; }
+    .wa-fab:hover { transform: scale(1.1); }
+    .wa-fab svg { width: 26px; fill: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 1100px) {
+      .cert-inner { grid-template-columns: 1fr; gap: 48px; }
+      .cert-iso { font-size: clamp(56px, 15vw, 120px); }
+    }
+    @media(max-width: 960px) {
+      .problem-cards { max-width: 100%; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pillar-card { border-right: none !important; padding-left: 0 !important; padding-right: 0 !important; border-top: 1px solid rgba(255,255,255,.1) !important; }
+      .pillar-card:first-child { border-top: none !important; }
+      .steps-list { grid-template-columns: 1fr 1fr; }
+      .step-item:nth-child(odd) { border-left: none; padding-left: 0; }
+      .step-item:nth-child(n+3) { padding-top: 40px; border-top: 1px solid rgba(255,255,255,.08); }
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .creds-inner { justify-content: center; }
+      .cred-sep { display: none; }
+      .clients-header { margin-bottom: 32px; }
+    }
+    @media(max-width: 640px) {
+      .steps-list { grid-template-columns: 1fr; }
+      .step-item { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(255,255,255,.08); }
+      .step-item:first-child { border-top: none; }
+      .hero-headline { font-size: 48px; }
+      .container { padding: 0 24px; }
+      .vb-content { padding-left: 24px; padding-right: 24px; }
+      .footer-wordmark { font-size: 52px; }
+      .logo-marquee-track img { height: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="global-vid">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="hero-video.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<nav id="nav">
+  <div class="container nav-inner">
+    <div class="nav-logo" id="navLogo">
+      <img src="adiquimicos-logo.png" alt="Adiquímicos" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#problem">El costo</a></li>
+      <li><a href="#howworks">Cómo funciona</a></li>
+      <li><a href="#certs">Certificaciones</a></li>
+      <li><a href="#faq">Preguntas</a></li>
+    </ul>
+    <a href="#cotizacion" class="nav-cta" id="navCta">Pedir cotización</a>
+  </div>
+</nav>
+
+<!-- 1. HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+<h1 class="hero-headline" id="heroHeadline">Su flota no puede<br>darse el lujo de parar.<br>Nuestra urea nunca falta.</h1>
+<div class="hero-actions" id="heroActions">
+        <a href="#cotizacion" class="btn-primary">Pedir cotización</a>
+        <a href="https://wa.me/573005007057" target="_blank" class="btn-ghost">WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="m-item"><div class="dot"></div><strong>ISO 22241 · 32,5% pureza</strong></div>
+    <div class="m-item"><div class="dot"></div>Entrega en 24 horas · Barranquilla</div>
+    <div class="m-item"><div class="dot"></div><strong>Stock permanente todo el año</strong></div>
+    <div class="m-item"><div class="dot"></div>Precio fijo por contrato</div>
+    <div class="m-item"><div class="dot"></div><strong>Proveedor de Terpel y Primax</strong></div>
+    <div class="m-item"><div class="dot"></div>Análisis de laboratorio en cada lote</div>
+    <div class="m-item"><div class="dot"></div><strong>Instalación de tanque sin costo</strong></div>
+    <div class="m-item"><div class="dot"></div>Urea Automotriz AUS 32</div>
+    <div class="m-item"><div class="dot"></div><strong>ISO 22241 · 32,5% pureza</strong></div>
+    <div class="m-item"><div class="dot"></div>Entrega en 24 horas · Barranquilla</div>
+    <div class="m-item"><div class="dot"></div><strong>Stock permanente todo el año</strong></div>
+    <div class="m-item"><div class="dot"></div>Precio fijo por contrato</div>
+    <div class="m-item"><div class="dot"></div><strong>Proveedor de Terpel y Primax</strong></div>
+    <div class="m-item"><div class="dot"></div>Análisis de laboratorio en cada lote</div>
+    <div class="m-item"><div class="dot"></div><strong>Instalación de tanque sin costo</strong></div>
+    <div class="m-item"><div class="dot"></div>Urea Automotriz AUS 32</div>
+  </div>
+</div>
+
+<!-- 2. CREDIBILIDAD INMEDIATA -->
+<section id="creds">
+  <div class="container">
+    <div class="creds-inner">
+      <div class="cred-item"><span class="cred-num" data-count="32.5" data-suffix="%">0%</span><span class="cred-label">Pureza certificada por lote</span></div>
+      <div class="cred-sep"></div>
+      <div class="cred-item"><span class="cred-num">ISO 22241</span><span class="cred-label">Norma internacional de calidad</span></div>
+      <div class="cred-sep"></div>
+      <div class="cred-item"><span class="cred-num" data-count="48" data-prefix="24–" data-suffix="h">0h</span><span class="cred-label">Tiempo de entrega en Barranquilla</span></div>
+      <div class="cred-sep"></div>
+      <div class="cred-logos">
+        <span>Confían en nosotros:</span>
+        <img src="terpel-logo.png" alt="Terpel" />
+        <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PROBLEMA / COSTO DE EQUIVOCARSE -->
+<section id="problem">
+  <div class="container">
+    <div class="section-intro" data-fade>
+      <span class="section-label">El costo de equivocarse</span>
+      <h2 class="section-title split-words">Tres errores que la mayoría<br>de flotas cometen<br>una sola vez.</h2>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card" data-stagger>
+        <p class="problem-num">01</p>
+        <h3 class="problem-title">Un camión parado por falta de urea puede costar $2.000.000 en un día.</h3>
+        <p class="problem-text">Un vehículo con motor SCR no arranca sin urea. Cada camión varado suma: flete perdido, conductor pagado sin producir, cliente que no recibe su mercancía.</p>
+        <p class="problem-answer">Stock permanente en Barranquilla. Despachamos el mismo día del pedido.</p>
+      </div>
+      <div class="problem-card" data-stagger>
+        <p class="problem-num">02</p>
+        <h3 class="problem-title">Reemplazar un catalizador SCR dañado por urea fuera de norma cuesta entre $8 y $45 millones.</h3>
+        <p class="problem-text">La urea que no cumple ISO 22241 degrada el catalizador de forma acumulativa y silenciosa. La factura del taller llega cuando el daño ya es irreversible.</p>
+        <p class="problem-answer">Análisis de laboratorio en cada lote. Número de lote trazable en cada entrega.</p>
+      </div>
+      <div class="problem-card" data-stagger>
+        <p class="problem-num">03</p>
+        <h3 class="problem-title">Sin precio fijo, el gasto de urea es una variable que no controla.</h3>
+        <p class="problem-text">Cuando el precio cambia sin avisar, su presupuesto de operación queda abierto. Eso hace imposible calcular el margen real por ruta o por vehículo en el mes.</p>
+        <p class="problem-answer">Precio cerrado por volumen, por escrito, desde el primer pedido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SOLUCIÓN / PILARES -->
+<section id="pillars">
+  <div class="container">
+    <div class="section-intro" data-fade>
+      <span class="section-label">Por qué elegirnos</span>
+      <h2 class="section-title split-words">Tres promesas.<br>Todas verificables.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card" data-stagger>
+        <p class="pillar-num">01 — Suministro</p>
+        <h3 class="pillar-title">Su pedido sale el mismo día.</h3>
+        <p class="pillar-sub">Stock permanente en Barranquilla. Despacho el mismo día para pedidos antes de las 2 PM. En 24-48 horas en su operación.</p>
+        <p class="pillar-proof">Cobertura región Caribe · Despachos al interior en 48-72h</p>
+      </div>
+      <div class="pillar-card" data-stagger>
+        <p class="pillar-num">02 — Calidad</p>
+        <h3 class="pillar-title">32,5% de pureza. Siempre. Verificable.</h3>
+        <p class="pillar-sub">Cada lote tiene análisis de laboratorio. El número de lote acompaña cada entrega. Usted puede verificar el resultado antes de cargar el vehículo.</p>
+        <p class="pillar-proof">Certificado ISO 22241 · Trazabilidad por número de lote</p>
+      </div>
+      <div class="pillar-card" data-stagger>
+        <p class="pillar-num">03 — Precio</p>
+        <h3 class="pillar-title">El precio que firmamos hoy no cambia.</h3>
+        <p class="pillar-sub">Antes de su primer pedido firmamos el precio por volumen. No cambia en el periodo acordado, sin importar las fluctuaciones del mercado.</p>
+        <p class="pillar-proof">Contrato por escrito · 30 días de aviso para salir · Sin penalidades</p>
+      </div>
+      <div class="pillar-card" data-stagger>
+        <p class="pillar-num">04 — Logística</p>
+        <h3 class="pillar-title">Instalamos el sistema. Usted trabaja.</h3>
+        <p class="pillar-sub">Para clientes con IBC o tanque a granel, instalamos el sistema de dispensación y hacemos seguimiento al nivel. Usted no llama. Nosotros llegamos.</p>
+        <p class="pillar-proof">Instalación sin costo · Monitoreo incluido para +1.000 L/mes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO BREAK -->
+<section id="videobreak">
+  <div class="vb-vid">
+    <video id="vbVideo" autoplay muted loop playsinline preload="auto">
+      <source src="break-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="vb-overlay"></div>
+  <div class="vb-content">
+    <p class="vb-label" id="vbTag">Trazabilidad total</p>
+    <h2 class="vb-headline" id="vbHeadline">Entregamos. Certificamos.<br>Usted verifica.</h2>
+    <p class="vb-sub" id="vbSub">Cada carga llega con análisis de laboratorio. El número de lote, la pureza, el resultado — todo en el documento que acompaña su pedido.</p>
+    <a href="#cotizacion" class="btn-cyan vb-cta" id="vbCta">Pedir cotización</a>
+  </div>
+</section>
+
+<!-- 5. CÓMO FUNCIONA -->
+<section id="howworks">
+  <div class="container">
+    <div class="section-intro" data-fade>
+      <span class="section-label">Cómo funciona</span>
+      <h2 class="section-title split-words">Cambiar de proveedor<br>toma 4 días, no 4 meses.</h2>
+    </div>
+    <div class="steps-list">
+      <div class="step-item" data-stagger>
+        <span class="step-num">01</span>
+        <h3 class="step-title">Diagnóstico de consumo</h3>
+        <p class="step-text">Una llamada de 15 minutos. Cuántos vehículos, qué volumen mensual, dónde opera. Le preguntamos lo que necesitamos para darle un precio exacto.</p>
+      </div>
+      <div class="step-item" data-stagger>
+        <span class="step-num">02</span>
+        <h3 class="step-title">Propuesta con precio cerrado</h3>
+        <p class="step-text">En menos de 24 horas recibe por escrito: precio por litro, formato de entrega, condiciones del contrato. Sin letra pequeña.</p>
+      </div>
+      <div class="step-item" data-stagger>
+        <span class="step-num">03</span>
+        <h3 class="step-title">Primera entrega e instalación</h3>
+        <p class="step-text">Si opera con IBC o tanque, instalamos el sistema de dispensación sin costo. La primera entrega llega en 24 a 48 horas desde Barranquilla.</p>
+      </div>
+      <div class="step-item" data-stagger>
+        <span class="step-num">04</span>
+        <h3 class="step-title">Reabastecimiento sin interrupciones</h3>
+        <p class="step-text">Para tanques a granel, hacemos seguimiento al nivel y programamos la recarga antes de que se acabe. Usted no llama. Nosotros llegamos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. PRUEBA DURA / CERTIFICACIONES -->
+<section id="certs">
+  <div class="container">
+    <div class="cert-inner" data-fade>
+      <div class="cert-left">
+        <div class="cert-iso">ISO<br>22241</div>
+        <p class="cert-iso-sub">Norma internacional · Urea AUS 32</p>
+      </div>
+      <div class="cert-right">
+        <span class="section-label">Certificaciones</span>
+        <h2 class="cert-title">El estándar que define si la urea es apta para su motor.</h2>
+        <p class="cert-text">La norma ISO 22241 establece la concentración exacta de urea (32,5%), los límites de impurezas y el proceso de análisis que cada lote debe pasar antes de llegar a un motor. Urea que no cumple esta norma puede dañar el catalizador SCR de forma irreversible. El costo de un catalizador nuevo: entre $8 y $45 millones.</p>
+        <div class="cert-points">
+          <div class="cert-point">32,5% de urea por lote. Sin excepción.</div>
+          <div class="cert-point">Análisis de laboratorio por lote, no por muestreo.</div>
+          <div class="cert-point">Número de lote trazable. Usted puede verificarlo.</div>
+          <div class="cert-point">El certificado de calidad acompaña cada despacho.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CLIENTES -->
+<section id="clients">
+  <div class="clients-header" data-fade>
+    <p>Los que más mueven en el país ya eligieron</p>
+  </div>
+  <div class="logo-marquee-wrap">
+    <div class="logo-marquee-track">
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+      <img src="terpel-logo.png" alt="Terpel" />
+      <img src="ChatGPT Image May 16, 2026, 01_41_16 PM.png" alt="Primax" />
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-intro" data-fade>
+      <span class="section-label dark">Preguntas frecuentes</span>
+      <h2 class="section-title split-words" style="color:var(--ink)">Lo que necesita saber<br>antes de llamar.</h2>
+    </div>
+    <div class="faq-list" data-fade>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">¿Cuál es el pedido mínimo?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">
+          <p class="faq-a-inner">Desde un bidón de 20 litros. Para contratos de volumen con precio cerrado, el mínimo por entrega es 200 litros.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">¿Entregan fuera de Barranquilla?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">
+          <p class="faq-a-inner">Sí. Cubrimos toda la región Caribe. Para el interior del país, despachamos volúmenes de IBC o más en 48 a 72 horas según la zona de operación.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">¿Qué pasa si la urea llega fuera de norma?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">
+          <p class="faq-a-inner">Reemplazamos el lote sin costo y sin discusión. Cada entrega tiene número de lote trazable. Si el análisis muestra incumplimiento de ISO 22241, asumimos el costo completo del reemplazo.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">¿Cuánto cuesta la instalación del sistema de dispensación?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">
+          <p class="faq-a-inner">Sin costo para clientes con consumo mensual superior a 1.000 litros. Incluye el equipo, la instalación en su operación y el monitoreo de nivel del tanque.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">¿Cómo funciona el precio fijo por contrato?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">
+          <p class="faq-a-inner">Antes de su primer pedido firmamos el precio por volumen. No cambia en el periodo acordado, sin importar las fluctuaciones del mercado. Si quiere salir del contrato, puede hacerlo con 30 días de aviso sin penalidades.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">¿Manejan crédito?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">
+          <p class="faq-a-inner">Sí. Para clientes con contrato de volumen evaluamos cupo de crédito entre 15 y 30 días. El proceso de aprobación toma 48 horas desde que recibimos la documentación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. CTA FINAL + FORMULARIO -->
+<section id="cotizacion">
+  <div class="container">
+    <div class="section-intro" data-fade>
+      <span class="section-label dark">Cotización</span>
+      <h2 class="section-title split-words" style="color:var(--ink)">Díganos cuánto<br>necesita.</h2>
+      <p class="section-sub dark">Un asesor le responde en menos de 24 horas con un precio real, por escrito. Sin compromisos.</p>
+    </div>
+    <div class="form-wrapper" data-fade>
+      <form id="quoteForm">
+        <div class="form-row">
+          <div class="form-group"><label>Empresa</label><input type="text" placeholder="Nombre de la empresa" required /></div>
+          <div class="form-group"><label>Nombre y cargo</label><input type="text" placeholder="Juan Pérez · Gerente de operaciones" required /></div>
+          <div class="form-group"><label>Teléfono</label><input type="tel" placeholder="+57 300 000 0000" required /></div>
+          <div class="form-group"><label>Ciudad / zona de operación</label><input type="text" placeholder="Barranquilla, región Caribe…" required /></div>
+          <div class="form-group full">
+            <label>Consumo aproximado al mes</label>
+            <select required>
+              <option value="" disabled selected>Seleccione un rango</option>
+              <option>Menos de 200 litros / mes</option>
+              <option>200 – 1.000 litros / mes</option>
+              <option>1.000 – 5.000 litros / mes</option>
+              <option>5.000 – 20.000 litros / mes</option>
+              <option>Más de 20.000 litros / mes</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">Recibir mi cotización →</button>
+        <p class="form-note">¿Prefiere hablar ahora? <a href="https://wa.me/573005007057" target="_blank">WhatsApp</a></p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <h3>Solicitud recibida.</h3>
+        <p>Un asesor le contactará en menos de 24 horas con un precio real, por escrito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-wordmark">ADIQUÍMICOS</div>
+    <div class="footer-bottom">
+      <div>
+        <div class="footer-brand-name">Adiquímicos</div>
+        <div class="footer-tagline">Barranquilla, Colombia · AUS 32 · ISO 22241</div>
+      </div>
+      <div class="footer-links">
+        <a href="#problem">El costo</a>
+        <a href="#howworks">Cómo funciona</a>
+        <a href="#certs">Certificaciones</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#cotizacion">Cotizar</a>
+      </div>
+      <div class="footer-right">
+        <a href="https://wa.me/573005007057" target="_blank">+57 300 500 7057</a><br>
+        <span>© 2026 Adiquímicos. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/573005007057?text=Hola%2C+quiero+cotizar+Urea+Automotriz+AUS+32." target="_blank" class="wa-fab">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const lenis = new Lenis({ duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+lenis.on('scroll', ScrollTrigger.update);
+
+window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', scrollY > 50), { passive: true });
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.timeline({ defaults: { ease: 'power2.out', duration: .5 } })
+  .to('#navLogo',      { opacity: 1, delay: .2 })
+  .to('#navCta',       { opacity: 1 }, '<.1')
+.to('#heroHeadline', { opacity: 1, y: 0, duration: .5 }, '<.1')
+  .to('#heroActions',  { opacity: 1, y: 0, duration: .4 }, '<.1');
+
+document.querySelectorAll('.split-words').forEach(el => {
+  const split = new SplitType(el, { types: 'words' });
+  gsap.from(split.words, {
+    scrollTrigger: { trigger: el, start: 'top 82%', toggleActions: 'play none none none' },
+    y: 20, opacity: 0, duration: .5, stagger: .06, ease: 'power2.out'
+  });
+});
+
+document.querySelectorAll('[data-fade]').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 84%', toggleActions: 'play none none none' },
+    opacity: 0, y: 16, duration: .5, ease: 'power2.out'
+  });
+});
+
+const staggerGroups = new Map();
+document.querySelectorAll('[data-stagger]').forEach(el => {
+  const key = el.parentElement;
+  if (!staggerGroups.has(key)) staggerGroups.set(key, []);
+  staggerGroups.get(key).push(el);
+});
+staggerGroups.forEach((els, parent) => {
+  gsap.from(els, {
+    scrollTrigger: { trigger: parent, start: 'top 80%', toggleActions: 'play none none none' },
+    opacity: 0, y: 16, duration: .5, stagger: .1, ease: 'power2.out'
+  });
+});
+
+document.querySelectorAll('[data-count]').forEach(el => {
+  const target = parseFloat(el.dataset.count);
+  const suf = el.dataset.suffix || '';
+  const pre = el.dataset.prefix || '';
+  ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true,
+    onEnter: () => gsap.to({ v: 0 }, { v: target, duration: 1.6, ease: 'power2.out',
+      onUpdate() { el.textContent = pre + (Number.isInteger(target) ? Math.round(this.targets()[0].v) : this.targets()[0].v.toFixed(1)) + suf; },
+      onComplete() { el.textContent = pre + target + suf; }
+    })
+  });
+});
+
+const vbVideo = document.getElementById('vbVideo');
+if (vbVideo) {
+  gsap.to(vbVideo, { y: '20%', ease: 'none', scrollTrigger: { trigger: '#videobreak', start: 'top bottom', end: 'bottom top', scrub: 1.2 } });
+}
+gsap.timeline({
+  scrollTrigger: { trigger: '#videobreak', start: 'top 72%', toggleActions: 'play none none none' },
+  defaults: { ease: 'power2.out', duration: .5 }
+})
+  .to('#vbTag',      { opacity: 1, y: 0 })
+  .to('#vbHeadline', { opacity: 1, y: 0 }, '<.1')
+  .to('#vbSub',      { opacity: 1, y: 0 }, '<.1')
+  .to('#vbCta',      { opacity: 1, y: 0 }, '<.1');
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -80, duration: 1.4 }); }
+  });
+});
+
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+document.getElementById('quoteForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.target;
+  gsap.to(form, { opacity: 0, y: -8, duration: .3, onComplete: () => {
+    form.style.display = 'none';
+    const s = document.getElementById('formSuccess');
+    s.style.display = 'block';
+    gsap.from(s, { opacity: 0, y: 16, duration: .4, ease: 'power2.out' });
+  }});
+});
+</script>
+</body>
+</html>
